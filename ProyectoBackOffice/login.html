@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesion - BackOffice</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="contenedor">
+    <div class="tarjeta">
+      <div class="encabezado">
+        <div class="icono">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <h1 class="titulo">Iniciar Sesion</h1>
+        <p class="subtitulo">Ingresa tus credenciales para acceder</p>
+      </div>
+
+      <form action="home.html" method="get" class="formulario">
+        <div class="campo">
+          <label for="correo" class="etiqueta">Correo electronico</label>
+          <input 
+            type="email" 
+            id="correo" 
+            name="correo" 
+            class="input" 
+            placeholder="usuario@ejemplo.com" 
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label for="password" class="etiqueta">Contrasena</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            class="input" 
+            placeholder="Tu contrasena" 
+            required
+          >
+        </div>
+
+        <button type="submit" class="boton">Entrar</button>
+      </form>
+
+      <div class="pie">
+        <p>No tienes una cuenta? <a href="register.html">Registrate aqui</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

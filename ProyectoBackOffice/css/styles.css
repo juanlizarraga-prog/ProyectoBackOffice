@@ -1,0 +1,314 @@
+﻿:root {
+  --color-fondo: #0f172a;
+  --color-tarjeta: #1e293b;
+  --color-borde: #334155;
+  --color-texto: #f8fafc;
+  --color-texto-secundario: #94a3b8;
+  --color-principal: #2563eb;
+  --color-principal-hover: #1d4ed8;
+  --color-exito: #10b981;
+  --color-alerta: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--color-principal);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.contenedor {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.tarjeta {
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.encabezado {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.icono {
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-principal);
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.icono svg {
+  width: 22px;
+  height: 22px;
+  fill: #ffffff;
+}
+
+.titulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.subtitulo {
+  font-size: 0.9rem;
+  color: var(--color-texto-secundario);
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.etiqueta {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  color: var(--color-texto);
+  font-size: 0.95rem;
+  padding: 0.75rem 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  border-color: var(--color-principal);
+}
+
+.boton {
+  width: 100%;
+  background-color: var(--color-principal);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.boton:hover {
+  background-color: var(--color-principal-hover);
+}
+
+.pie {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-texto-secundario);
+}
+
+.panel {
+  display: flex;
+  min-height: 100vh;
+}
+
+.barra-lateral {
+  width: 250px;
+  background-color: var(--color-tarjeta);
+  border-right: 1px solid var(--color-borde);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  flex: 1;
+}
+
+.enlace-menu {
+  color: var(--color-texto-secundario);
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.enlace-menu:hover,
+.enlace-menu.activo {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+.contenido-principal {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.barra-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--color-tarjeta);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.contenido {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tarjetas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.tarjeta-info {
+  background-color: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.tarjeta-info p {
+  color: var(--color-texto-secundario);
+  font-size: 0.85rem;
+}
+
+.tarjeta-info h3 {
+  font-size: 1.6rem;
+  margin-top: 0.4rem;
+}
+
+.tabla-contenedor {
+  background-color: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+.tabla-contenedor h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.tabla th,
+.tabla td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla th {
+  color: var(--color-texto-secundario);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-exito {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: var(--color-exito);
+}
+
+.badge-alerta {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: var(--color-alerta);
+}
+
+@media (max-width: 768px) {
+  .panel {
+    flex-direction: column;
+  }
+
+  .barra-lateral {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--color-borde);
+  }
+
+  .barra-superior,
+  .contenido {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenedor {
+    padding: 1rem;
+  }
+
+  .tarjeta {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .titulo {
+    font-size: 1.3rem;
+  }
+}

@@ -169,7 +169,7 @@ function renderizarProyectos(lista) {
     btnActualizar.type = "button";
     btnActualizar.className = "boton-secundario";
     btnActualizar.textContent = "Actualizar";
-    btnActualizar.addEventListener("click", () => iniciarEdicion(proyecto));
+    btnActualizar.addEventListener("click", () => iniciarEdicion(proyecto._id || proyecto.id));
 
     const btnEliminar = document.createElement("button");
     btnEliminar.type = "button";
@@ -185,21 +185,43 @@ function renderizarProyectos(lista) {
   });
 }
 
-function iniciarEdicion(proyecto) {
-  resetearFormulario();
-  inputId.value = proyecto._id || proyecto.id;
-  inputTitulo.value = proyecto.title || "";
-  inputDescripcion.value = proyecto.description || "";
-  inputTecnologias.value = (proyecto.technologies || []).join(", ");
-  inputRepositorio.value = proyecto.repository || "";
-  inputImagenes.value = (proyecto.images || []).join(", ");
+async function iniciarEdicion(id) {
+  try {
+    const response = await fetch(`${API_URL}/projects/${id}`, {
+      method: "GET",
+      headers: {
+        "auth-token": token
+      }
+    });
 
-  formTitulo.textContent = "Actualizar Proyecto";
-  btnGuardar.textContent = "Actualizar Proyecto";
+    if (!verificarAutenticacion(response)) return;
 
-  contenedorFormulario.classList.remove("oculto");
-  contenedorFormulario.scrollIntoView({ behavior: "smooth" });
-  inputTitulo.focus();
+    if (!response.ok) {
+      const data = await response.json();
+      const msg = Array.isArray(data.message) ? data.message.join(". ") : (data.message || data.error || "Error al obtener el proyecto.");
+      alert(msg);
+      return;
+    }
+
+    const proyecto = await response.json();
+
+    resetearFormulario();
+    inputId.value = proyecto._id || proyecto.id;
+    inputTitulo.value = proyecto.title || "";
+    inputDescripcion.value = proyecto.description || "";
+    inputTecnologias.value = (proyecto.technologies || []).join(", ");
+    inputRepositorio.value = proyecto.repository || "";
+    inputImagenes.value = (proyecto.images || []).join(", ");
+
+    formTitulo.textContent = "Actualizar Proyecto";
+    btnGuardar.textContent = "Actualizar Proyecto";
+
+    contenedorFormulario.classList.remove("oculto");
+    contenedorFormulario.scrollIntoView({ behavior: "smooth" });
+    inputTitulo.focus();
+  } catch (err) {
+    alert(err.message || "Error al obtener el proyecto.");
+  }
 }
 
 formProyecto.addEventListener("submit", async (e) => {
@@ -221,9 +243,12 @@ formProyecto.addEventListener("submit", async (e) => {
     title,
     description,
     technologies,
-    repository,
     images
   };
+
+  if (repository) {
+    payload.repository = repository;
+  }
 
   const esEdicion = Boolean(id);
   const url = esEdicion ? `${API_URL}/projects/${id}` : `${API_URL}/projects`;

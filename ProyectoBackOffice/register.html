@@ -19,7 +19,9 @@
         <p class="subtitulo">Registrate para comenzar</p>
       </div>
 
-      <form action="login.html" method="get" class="formulario">
+      <div id="error-message" class="alerta-error oculto"></div>
+
+      <form class="formulario">
         <div class="campo">
           <label for="nombre" class="etiqueta">Nombre completo</label>
           <input 
@@ -28,6 +30,20 @@
             name="nombre" 
             class="input" 
             placeholder="Nombre y apellido" 
+            required
+          >
+        </div>
+
+        <div class="campo">
+          <label for="itsonId" class="etiqueta">ID ITSON</label>
+          <input 
+            type="text" 
+            id="itsonId" 
+            name="itsonId" 
+            class="input" 
+            placeholder="6 dígitos numéricos" 
+            pattern="[0-9]{6}" 
+            maxlength="6" 
             required
           >
         </div>
@@ -76,5 +92,6 @@
       </div>
     </div>
   </div>
+  <script src="js/register.js"></script>
 </body>
 </html>

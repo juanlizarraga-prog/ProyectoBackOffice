@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=login.html">
   <title>Home - BackOffice</title>
   <link rel="stylesheet" href="css/styles.css">
+  <script>
+    if (!localStorage.getItem("authToken")) {
+      location.href = "login.html";
+    }
+  </script>
 </head>
 <body>
   <div class="panel">
@@ -27,75 +31,64 @@
       </div>
 
       <div>
-        <a href="login.html" class="enlace-menu">Cerrar sesion</a>
+        <a href="#" id="btn-logout" class="enlace-menu">Cerrar sesion</a>
       </div>
     </div>
 
     <div class="contenido-principal">
       <div class="barra-superior">
         <h2>Panel Principal</h2>
-        <span>Administrador</span>
+        <span id="user-name">Administrador</span>
       </div>
 
       <div class="contenido">
-        <div class="tarjetas-grid">
-          <div class="tarjeta-info">
-            <p>Usuarios</p>
-            <h3>1,250</h3>
-          </div>
-          <div class="tarjeta-info">
-            <p>Ventas</p>
-            <h3>$18,400</h3>
-          </div>
-          <div class="tarjeta-info">
-            <p>Visitas</p>
-            <h3>9,800</h3>
-          </div>
-          <div class="tarjeta-info">
-            <p>Actividad</p>
-            <h3>98%</h3>
-          </div>
+        <div class="seccion-encabezado">
+          <h2>Gestión de Proyectos</h2>
+          <button type="button" id="btn-toggle-form" class="boton boton-nuevo">+ Agregar Proyecto</button>
         </div>
 
-        <div class="tabla-contenedor">
-          <h2>Ultimos registros</h2>
-          <table class="tabla">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Accion</th>
-                <th>Fecha</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>01</td>
-                <td>Carlos Lopez</td>
-                <td>Inicio sesion</td>
-                <td>2026-11-23</td>
-                <td><span class="badge badge-exito">Activo</span></td>
-              </tr>
-              <tr>
-                <td>02</td>
-                <td>Ana Martinez</td>
-                <td>Registro</td>
-                <td>2026-11-22</td>
-                <td><span class="badge badge-exito">Activo</span></td>
-              </tr>
-              <tr>
-                <td>03</td>
-                <td>Luis Ramos</td>
-                <td>Actualizacion</td>
-                <td>2026-11-21</td>
-                <td><span class="badge badge-alerta">En espera</span></td>
-              </tr>
-            </tbody>
-          </table>
+        <div id="contenedor-formulario" class="formulario-proyecto-contenedor oculto">
+          <h3 id="form-titulo">Nuevo Proyecto</h3>
+          <div id="form-error-message" class="alerta-error oculto"></div>
+          <form id="form-proyecto" class="formulario">
+            <input type="hidden" id="proyecto-id">
+
+            <div class="campo">
+              <label for="proyecto-titulo" class="etiqueta">Título *</label>
+              <input type="text" id="proyecto-titulo" class="input" placeholder="Nombre del proyecto" required>
+            </div>
+
+            <div class="campo">
+              <label for="proyecto-descripcion" class="etiqueta">Descripción *</label>
+              <textarea id="proyecto-descripcion" class="input" rows="3" placeholder="Descripción detallada" required></textarea>
+            </div>
+
+            <div class="campo">
+              <label for="proyecto-tecnologias" class="etiqueta">Tecnologías (separadas por coma)</label>
+              <input type="text" id="proyecto-tecnologias" class="input" placeholder="JavaScript, Node.js, CSS">
+            </div>
+
+            <div class="campo">
+              <label for="proyecto-repositorio" class="etiqueta">Repositorio (URL Opcional)</label>
+              <input type="text" id="proyecto-repositorio" class="input" placeholder="https://github.com/usuario/proyecto" required>
+            </div>
+
+            <div class="campo">
+              <label for="proyecto-imagenes" class="etiqueta">Imágenes (URLs separadas por coma)</label>
+              <input type="text" id="proyecto-imagenes" class="input" placeholder="https://ejemplo.com/foto1.jpg, https://ejemplo.com/foto2.jpg">
+            </div>
+
+            <div class="formulario-acciones">
+              <button type="submit" id="btn-guardar" class="boton">Guardar Proyecto</button>
+              <button type="button" id="btn-cancelar" class="boton-secundario">Cancelar</button>
+            </div>
+          </form>
         </div>
+
+        <div id="proyectos-contenedor" class="proyectos-grid"></div>
       </div>
     </div>
   </div>
+  <script src="js/home.js"></script>
 </body>
 </html>
